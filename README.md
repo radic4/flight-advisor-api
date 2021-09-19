@@ -22,7 +22,7 @@ Username: administrator
 Password: password
 ```
 
-Stateless HTTP authentication is used. Authorisation Basic header with base64 encoded `username:password` should be added to each request except for registration. Administrator example: `Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==`
+Stateless HTTP authentication is used. Authorization Basic header with base64 encoded `username:password` should be added to each request except for registration. Administrator example: `Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==`
 
 Postman examples -> exported file `flight-advisor-api` or [JSON](https://www.postman.com/collections/64c0532bc11d7080aa4c).
 

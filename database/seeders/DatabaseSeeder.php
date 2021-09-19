@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $role = Role::factory(['title' => 'administrator'])->create();
+        $user = User::factory(['username' => 'administrator', 'role_id' => 1])->create();
+        Role::factory(['title' => 'regular'])->create();
+
+        $this->call(Cities::class);
     }
 }

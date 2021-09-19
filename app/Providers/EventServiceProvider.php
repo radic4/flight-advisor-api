@@ -18,6 +18,12 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\AirportImportUploaded' => [
+            'App\Listeners\ProcessAirportImport',
+        ],
+        'App\Events\RouteImportUploaded' => [
+            'App\Listeners\ProcessRouteImport',
+        ],
     ];
 
     /**

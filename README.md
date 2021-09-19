@@ -1,64 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Flight Advisor API
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1. [Start](#start)
+2. [Usage](#usage)
 
-## About Laravel
+## 1. Start
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-Clone repository  
+-Run `composer install`  
+-Copy `.env.example` to `.env`  
+-Run `php artisan key:generate`  
+-Fill in MySQL, Redis and Neo4j database credentials  
+-Run `php artisan migrate:fresh --seed` (This command will create dummy administrator account and cities)  
+-Run `php artisan queue:work`  
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 2. Usage
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Administrator account
 
-## Learning Laravel
+```
+Username: administrator
+Password: password
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Stateless HTTP authentication is used. Authorisation Basic header with base64 encoded `username:password` should be added to each request except for registration. Administrator example: `Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==`
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Postman examples -> exported file `flight-advisor-api` or [JSON](https://www.postman.com/collections/64c0532bc11d7080aa4c).
 
-## Laravel Sponsors
+Requests:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Register:
 
-### Premium Partners
+```
+POST /api/register
+Headers:
+-Accept: application/json
+Required parameters: first_name, last_name, username and password
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+Create city:
 
-## Contributing
+```
+POST /api/cities
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Required parameters: name, country, description
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Get / Search cities:
 
-## Code of Conduct
+```
+GET /api/cities
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Optional parameters: search, comments
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Import airports:
 
-## Security Vulnerabilities
+```
+POST /api/airports/import
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Required parameters: file
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Import routes:
 
-## License
+```
+POST /api/routes/import
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Required parameters: file
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Create comment:
+
+```
+POST /api/comments
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Requred parameters: city_id, description
+```
+
+Edit comment:
+
+```
+PUT /api/comments/{comment_id}
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Required parameters: description
+```
+
+Delete comment:
+
+```
+DELETE /api/comments/{comment_id}
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+```
+
+Find cheapest flight:
+
+```
+POST /api/cheapest-flight
+Headers:
+-Accept: application/json
+-Authorization: Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==
+Required parameters: from_city_id, to_city_id
+```

@@ -1,0 +1,411 @@
+{
+	"info": {
+		"_postman_id": "40a3b9c3-4a6e-4745-b840-9759a707f63a",
+		"name": "Flights",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "first_name",
+							"value": "John",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Doe",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "johndoe",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://site.com/api/register",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store city",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Bijeljina",
+							"type": "text"
+						},
+						{
+							"key": "country",
+							"value": "Bosnia and Herzegovina",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Beautiful city.",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://site.com/api/cities",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get / Search cities",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9obmRvZTpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://site.com/api/cities?search=Gor&comments=1",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"cities"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "Gor"
+						},
+						{
+							"key": "comments",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import airports",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Downloads/airports.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://site.com/api/airports/import",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"airports",
+						"import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Import routes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW5pc3RyYXRvcjpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Downloads/routes.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://site.com/api/routes/import",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"routes",
+						"import"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Store comment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9obmRvZTpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "city_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "This is comment!",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://site.com/api/comments",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update comment",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9obmRvZTpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://site.com/api/comments/1?description=This is updated comment!",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"comments",
+						"1"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "This is updated comment!"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete comment",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9obmRvZTpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://site.com/api/comments/1",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"comments",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cheapest flight",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic am9obmRvZTpwYXNzd29yZA==",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://site.com/api/cheapest-flight?from_city_id=12&to_city_id=58",
+					"protocol": "http",
+					"host": [
+						"site",
+						"com"
+					],
+					"path": [
+						"api",
+						"cheapest-flight"
+					],
+					"query": [
+						{
+							"key": "from_city_id",
+							"value": "12"
+						},
+						{
+							"key": "to_city_id",
+							"value": "58"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

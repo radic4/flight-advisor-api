@@ -47,6 +47,18 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
 
+        'airports' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/airports.log'),
+            'level' => 'debug',
+        ],
+
+        'routes' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/routes.log'),
+            'level' => 'debug',
+        ],
+
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
